@@ -1,7 +1,19 @@
+from dateclasses import dataclass
 from datetime import date
 from typing import List
 import uuid
 from entity import Entity  
+
+
+@dataclass
+class ContactModel:
+    name: str = ""
+    surname: str = ""
+    phones: List[str] = None
+    email: str = ""
+    birthday: date = None
+    tags: List[str] = None
+
 
 class Contact(Entity):
     def __init__(self,
@@ -12,13 +24,14 @@ class Contact(Entity):
         birthday: date,
         tags: List[str] = None
     ):
-        super().__init__(tags)
+        super().__init__(tags or [])
         self.contact_id = uuid.uuid4()
         self.name = name
         self.surname = surname
         self.phones = phones
         self.email = email
         self.birthday = birthday
+        self.tags = tags if tags is not None else []
 
 
     def __str__(self):
@@ -31,7 +44,16 @@ class Contact(Entity):
             f"Tags: {', '.join(self.tags) if self.tags else 'None'}"
         )
     
-    def edit(self, changes: dict):
-        for key, value in changes.items():
-            if hasattr(self, key):
-                setattr(self, key, value)
+    def edit(self, entity_model: ContactModel):
+        if entity_model.name:
+            self.name = entity_model.name
+        if entity_model.surname:
+            self.surname = entity_model.surname
+        if entity_model.phones:
+            self.phones = entity_model.phones
+        if entity_model.email:
+            self.email = entity_model.email
+        if entity_model.birthday:
+            self.birthday = entity_model.birthday
+        if entity_model.tags:
+            self.tags = entity_model.tags                    
