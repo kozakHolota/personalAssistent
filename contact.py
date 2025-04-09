@@ -30,3 +30,8 @@ class Contact(Entity):
             f"Birthday: {self.birthday.strftime('%Y-%m-%d')}\n"
             f"Tags: {', '.join(self.tags) if self.tags else 'None'}"
         )
+    
+    def edit(self, changes: dict):
+        for key, value in changes.items():
+            if hasattr(self, key):
+                setattr(self, key, value)
