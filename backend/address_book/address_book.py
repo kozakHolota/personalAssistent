@@ -34,25 +34,24 @@ class AddressBook:
 
 
     @errors
-    def search(self, search: ContactSearch) -> List[Contact]:       
-        # Search contacts using optional filters: name, surname, email, or phone.      
+    def search(self, search: ContactSearch) -> List[Contact]:
+        # Search contacts using optional filters: name, surname, email, phone, birthday.
         results = []
         for contact in self.contacts:
-            if search.name and search.name.lower() not in contact.name.lower():
-                continue
-            if search.surname and search.surname.lower() not in contact.surname.lower():
-                continue
-            if search.email and search.email.lower() not in contact.email.lower():
-                continue
-            if search.phone and not any(search.phone in phone for phone in contact.phones):
-                continue
-            if search.birthday and search.birthday != contact.birthday:
+            if (
+                (search.name and search.name.lower() not in contact.name.lower()) or
+                (search.surname and search.surname.lower() not in contact.surname.lower()) or
+                (search.email and search.email.lower() not in contact.email.lower()) or
+                (search.phone and not any(search.phone in phone for phone in contact.phones)) or
+                (search.birthday and search.birthday != contact.birthday)
+            ):
                 continue
 
             results.append(contact)
 
         self._display_contacts(results)
         return results
+
     
 
     @errors
