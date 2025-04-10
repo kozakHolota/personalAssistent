@@ -1,4 +1,4 @@
-def search(self, query: str) -> List[Note]:
+def search(self, query: str) -> List[Notebook]:
     
     results = []
     query_lower = query.lower()
