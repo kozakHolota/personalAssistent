@@ -2,7 +2,7 @@ from datetime import datetime   # Importing datetime for timestamping
 import uuid # Importing uuid for unique ID generation
 
 from backend.note_edit_model import NoteEdit
-from entity import Entity  # assuming Entity is in same 'backend' package
+from backend.entity import Entity
 
 # This code defines a Note class that represents a note with a subject, text, and tags.
 # It inherits from the Entity class and implements methods to edit the note.

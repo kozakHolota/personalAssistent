@@ -1,17 +1,13 @@
-import uuid
 import pickle
-from typing import List
 from pathlib import Path
-from entity import Entity
-from note import Note
-from notebook_edit_model import NoteBookEdit
+from typing import List
 
-class NoteBook(Entity):
-    def __init__(self, name: str, description: str = "", tags: List[str] = None):
-        super().__init__(tags)
-        self.notebook_id = uuid.uuid4()
-        self.name = name
-        self.description = description
+from backend.note import Note
+from backend.notebook_edit_model import NoteBookEdit
+
+
+class NoteBook:
+    def __init__(self):
         self.notes: List[Note] = []
 
     def add_note(self, note: Note):
@@ -36,7 +32,7 @@ class NoteBook(Entity):
         return results
 
     def save(self):
-        path = Path(__file__).parent.parent / "note.pkl"  # вихід на рівень вище
+        path = Path(__file__).parent.parent / "notebook.pkl"
         with path.open("wb") as f:
             pickle.dump(self, f)
 
