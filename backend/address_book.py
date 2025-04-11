@@ -1,9 +1,10 @@
 import pickle
 from uuid import UUID
 from typing import List
+from pathlib import Path
 from contact import Contact
 from contact_search import ContactSearch
-from decorators import errors
+
 
 
 
@@ -13,7 +14,7 @@ class AddressBook:
         self.contacts: List[Contact] = []  # Stores all contact instances
 
 
-    @errors
+    
     def add(self, contact: Contact):
     
         # Create a search filter to check if a contact with the same name, surname, email, phone, and birthdate already exists
@@ -33,7 +34,7 @@ class AddressBook:
         return f"[green]Contact {contact.name} {contact.surname} added.[/green]"
 
 
-    @errors
+    
     def search(self, search: ContactSearch) -> List[Contact]:
         # Search contacts using optional filters: name, surname, email, phone, birthday.
         results = []
@@ -54,7 +55,7 @@ class AddressBook:
 
     
 
-    @errors
+   
     def edit(self, contact_id: UUID, **kwargs):    
     
         # Find the contact by ID. If not found, return an error message
@@ -79,7 +80,7 @@ class AddressBook:
         return f"[yellow]Contact {contact_id} updated.[/yellow]"
 
 
-    @errors
+   
     def delete(self, contact_id: UUID):
     
         # Find the contact by ID. If not found, return an error message
@@ -93,12 +94,17 @@ class AddressBook:
 
 
 
-    @errors    
-    def save(self):
         
-        # Open the file for writing in binary mode
-        with open("contacts.pkl", "wb") as f:
-            # Serialize all contacts to the file using pickle
+    def save(self):
+    
+    # Serialize all contacts and save them to <project_root>/contacts.pkl using pathlib.
+    
+    # Resolve path to the project root (assuming script is run from anywhere)
+        project_root = Path(__file__).resolve().parent.parent
+        file_path = project_root / "contacts.pkl"
+
+        # Open the file using Path and save with pickle
+        with file_path.open("wb") as f:
             pickle.dump(self.contacts, f)
 
-        return f"[cyan]Contacts have been saved to contacts.pkl[/cyan]"
+        return f"[cyan]Contacts have been saved to {file_path}[/cyan]"
