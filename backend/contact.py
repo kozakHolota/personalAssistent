@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from datetime import date
 from typing import List
 import uuid
+from backend.contact_model import ContactModel
 from entity import Entity  
 
 
