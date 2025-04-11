@@ -5,16 +5,6 @@ import uuid
 from entity import Entity  
 
 
-@dataclass
-class ContactModel:
-    name: str = ""
-    surname: str = ""
-    phones: List[str] = None
-    email: str = ""
-    birthday: date = None
-    tags: List[str] = None
-
-
 class Contact(Entity):
     def __init__(self,
         name: str,
