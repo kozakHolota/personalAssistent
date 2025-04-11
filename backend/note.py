@@ -1,5 +1,7 @@
 from datetime import datetime   # Importing datetime for timestamping
 import uuid # Importing uuid for unique ID generation
+
+from backend.note_edit_model import NoteEdit
 from entity import Entity  # assuming Entity is in same 'backend' package
 
 # This code defines a Note class that represents a note with a subject, text, and tags.
@@ -24,7 +26,7 @@ class Note(Entity):
             f"Tags: {', '.join(self.tags) if self.tags else 'None'}" # Tags of the note
         )
 
-    def edit(self, changes_model): # Method to edit the note
+    def edit(self, changes_model: "NoteEdit"): # Method to edit the note
         if changes_model.subject: # Check if the subject is provided in the changes model
             self.subject = changes_model.subject # Update the subject
         if changes_model.text: # Check if the text is provided in the changes model
@@ -32,11 +34,3 @@ class Note(Entity):
         if changes_model.tags is not None: # Check if the tags are provided in the changes model
             self.tags = changes_model.tags # Update the tags
 
-from dataclasses import dataclass # Importing dataclass for creating data classes
-
-# Implementing the NoteEdit class
-@dataclass # This class is used to represent the changes to be made to a note.
-class NoteEdit:
-    subject: str = "" # Default empty string for subject
-    text: str = "" # Default empty string for text
-    tags: list[str] = None # Default None for tags
