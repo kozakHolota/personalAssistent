@@ -1,2 +1,30 @@
-# personalAssistent
-Personal Assistant Neoversity group project 2025. Group 10.
+# Про Програму
+Програма **Персональний Асистент** створена для:
+
+- Управління контактами (додавання, стирання, пошук)
+- Управління нотатками
+
+Інтерфейс програми - *командна стрічка*. Мова інтерфейсу - *англійська*.
+
+# Вимоги
+- Python >= 3.10
+- tox. Якщо не встановлений, встановлюємо командою: `pip  install tox`
+# Інсталяція та запуск
+
+`git clone https://github.com/kozakHolota/personalAssistent.git`
+
+Перейти у папку проєкту
+
+`cd personalAssistent`
+
+Запустити програму
+
+`tox run`
+
+**Примітка**. Програма запускається виключно у *Віртуальному Середовищі Python* і ніяк не впливає на бібліотеки системного *Python*.
+
+# Автори
+- Павло Мриглоцький <kozak.holota@gmail.com>
+- Богдан Герасименко <bgerasymenko@gmail.com>
+- Христина Задорожняк <christina.zadorozhniak@gmail.com>
+- Олексій Осипенко <dezzly21@gmail.com>
