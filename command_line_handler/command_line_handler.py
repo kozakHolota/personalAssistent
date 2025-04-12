@@ -34,6 +34,7 @@ class CommandLineHandler:
         try:
             return str(self.__prompt)
         except KeyboardInterrupt:
+            print("\n")
             InfoPanel("Confirm", "Do you want to exit?").show()
             answer = str(ConsolePrompt("Make your choice", ["y", "n"]))
             if answer == "y":
@@ -55,6 +56,8 @@ class CommandLineHandler:
         command = self.__get_command()
         if command in self.command_map:
             getattr(self, self.command_map[command])()
+        elif command is None:
+            print("\n")
         else:
             ErrorPanel("Command execution failed", f"Command '{command}' not found").show()
 

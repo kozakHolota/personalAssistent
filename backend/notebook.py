@@ -3,11 +3,8 @@ from pathlib import Path
 from typing import List
 
 from backend.note import Note
+from backend.note_search import NoteSearch
 from backend.notebook_edit_model import NoteBookEdit
-from entity import Entity
-from note import Note
-from notebook_edit_model import NoteBookEdit
-from note_search import NoteSearch
 
 
 class NoteBook:
