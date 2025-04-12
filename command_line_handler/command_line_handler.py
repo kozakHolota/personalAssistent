@@ -31,7 +31,16 @@ class CommandLineHandler:
 
     def __get_command(self):
         """Gets command entered by the user"""
-        return str(self.__prompt)
+        try:
+            return str(self.__prompt)
+        except KeyboardInterrupt:
+            InfoPanel("Confirm", "Do you want to exit?").show()
+            answer = str(ConsolePrompt("Make your choice", ["y", "n"]))
+            if answer == "y":
+                sys.exit(0)
+            else:
+                return
+
 
     def __confirm(self, question: str) -> bool:
         """Displays a confirmation prompt and returns the user's choice'"""
