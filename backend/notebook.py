@@ -5,6 +5,7 @@ from pathlib import Path
 from entity import Entity
 from note import Note
 from notebook_edit_model import NoteBookEdit
+from note_search import NoteSearch
 
 class NoteBook(Entity):
     def __init__(self, name: str, description: str = "", tags: List[str] = None):
@@ -28,10 +29,15 @@ class NoteBook(Entity):
         if changes_model.tags is not None:
             self.tags = changes_model.tags
 
-    def search(self, keyword: str) -> List[Note]:
+    def search(self, noteSearch: NoteSearch) -> List[Note]:
+        subject_query = noteSearch.subject_part.lower()
+        text_query = noteSearch.text_part.lower()
+
         results = []
         for note in self.notes:
-            if keyword.lower() in note.subject.lower() or keyword.lower() in note.text.lower():
+            subject_match = subject_query in note.subject.lower()
+            text_match = text_query in note.text.lower()
+            if subject_match and text_match:
                 results.append(note)
         return results
 
