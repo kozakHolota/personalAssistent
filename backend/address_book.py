@@ -50,7 +50,7 @@ class AddressBook:
 
         return results
 
-    def get_birthdays(self, days_limit: str) -> List[Contact]:
+    def get_birthdays(self, days_limit: int) -> List[Contact]:
         """Gets all contacts with birthdays in the next <days_limit> days."""
         now_date = date.today()
         jubilers = []

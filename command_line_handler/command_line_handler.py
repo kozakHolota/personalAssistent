@@ -359,7 +359,7 @@ class CommandLineHandler:
             else:
                 return int(days)
         days_to_look_ahead = enter_days()
-        birthdays = self.__address_book.get_contacts_with_birthday(days_to_look_ahead)
+        birthdays = self.__address_book.get_birthdays(days_to_look_ahead)
         birthdays_table = ConsoleTable("Birthdays", ["Name", "Surname", "Birthday"])
         for contact in birthdays:
             birthdays_table.add_row([contact.name, contact.surname, contact.birthday.strftime("%Y/%m/%d")])
