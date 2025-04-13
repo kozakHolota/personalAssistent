@@ -9,3 +9,4 @@ class ContactSearch:
     email: Optional[str] = None
     phone: Optional[str] = None
     birthday: Optional[date] = None
+    tags: Optional[list] = None

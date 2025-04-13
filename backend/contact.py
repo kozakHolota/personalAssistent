@@ -1,9 +1,9 @@
-from dataclasses import dataclass
+import uuid
 from datetime import date
 from typing import List
-import uuid
+
 from backend.contact_model import ContactModel
-from entity import Entity  
+from backend.entity import Entity
 
 
 class Contact(Entity):
@@ -23,17 +23,6 @@ class Contact(Entity):
         self.email = email
         self.birthday = birthday
         self.tags = tags if tags is not None else []
-
-
-    def __str__(self):
-        return (
-            f"ID: {self.contact_id}\n"
-            f"Name: {self.name} {self.surname}\n"
-            f"Phones: {', '.join(self.phones)}\n"
-            f"Email: {self.email}\n"
-            f"Birthday: {self.birthday.strftime('%Y-%m-%d')}\n"
-            f"Tags: {', '.join(self.tags) if self.tags else 'None'}"
-        )
     
     def edit(self, entity_model: ContactModel):
         if entity_model.name:

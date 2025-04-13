@@ -16,16 +16,6 @@ class Note(Entity):
         self.text = text   # Set the text of the note
         self.created_at = datetime.now() # Set the creation time of the note
 
-#
-    def __str__(self): # String representation of the Note class
-        return ( # Format the string representation
-            f"ID: {self.note_id}\n" # Unique ID of the note
-            f"Subject: {self.subject}\n" # Subject of the note
-            f"Text: {self.text}\n" # Text of the note
-            f"Created: {self.created_at.strftime('%Y-%m-%d %H:%M')}\n"  # Creation time of the note
-            f"Tags: {', '.join(self.tags) if self.tags else 'None'}" # Tags of the note
-        )
-
     def edit(self, changes_model: "NoteEdit"): # Method to edit the note
         if changes_model.subject: # Check if the subject is provided in the changes model
             self.subject = changes_model.subject # Update the subject

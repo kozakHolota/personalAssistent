@@ -10,4 +10,5 @@ class ConsolePrompt:
         self.prompt = prompt
 
     def __str__(self):
-        return Prompt.ask(self.prompt, choices=self.choices, default=self.default)
+        result = Prompt.ask(self.prompt, choices=self.choices, default=self.default)
+        return result if result else ""
