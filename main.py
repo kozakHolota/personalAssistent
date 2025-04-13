@@ -4,7 +4,10 @@ from ui_components.panels import InfoPanel
 
 def main():
     command_handler = CommandLineHandler()
-    InfoPanel("Welcome!", "Welcome to the command line interface\nType 'help' to list available commands").show()
+    InfoPanel(
+        "Welcome!",
+        "Welcome to the Assistant command line interface\nType 'help' to list available commands"
+    ).show()
 
     while True:
         command_handler.handle_command()
