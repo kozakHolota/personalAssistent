@@ -364,6 +364,8 @@ class CommandLineHandler:
         for contact in birthdays:
             birthdays_table.add_row([contact.name, contact.surname, contact.birthday.strftime("%Y/%m/%d")])
 
+        birthdays_table.show()
+
     def _exit(self):
         choice = self.__confirm("Do you want to exit?")
         if choice:

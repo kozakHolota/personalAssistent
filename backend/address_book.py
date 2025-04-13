@@ -1,5 +1,5 @@
 import pickle
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 from typing import List
 from uuid import UUID
@@ -36,8 +36,6 @@ class AddressBook:
         results = []
 
         for contact in self.contacts:
-            print(search.tags)
-            print(contact.tags)
             if (
                 (not search.name or search.name.lower() in contact.name.lower()) and
                 (not search.surname or search.surname.lower() in contact.surname.lower())and
@@ -52,7 +50,7 @@ class AddressBook:
 
     def get_birthdays(self, days_limit: int) -> List[Contact]:
         """Gets all contacts with birthdays in the next <days_limit> days."""
-        now_date = date.today()
+        now_date = datetime.now()
         jubilers = []
         for contact in self.contacts:
             if contact.birthday:
